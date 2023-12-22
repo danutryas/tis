@@ -1,4 +1,5 @@
 import { InputForm } from "@/app/register/page";
+import { PasswordData, RegisterData } from "@/app/register/registerForm";
 import { Dispatch, SetStateAction } from "react";
 
 export const emailValidation = (
@@ -18,10 +19,11 @@ export const emailValidation = (
     }));
   }
 };
+
 export const passwordMatch = (
-  password: string,
-  confirmPassword: string,
-  setState: Dispatch<SetStateAction<InputForm>>
+  password: String,
+  confirmPassword: String,
+  setState: Dispatch<SetStateAction<PasswordData>>
 ) => {
   if (password === confirmPassword) {
     setState((errors) => ({
@@ -29,30 +31,33 @@ export const passwordMatch = (
       password: "",
       confirmPassword: "",
     }));
-  } else {
-    setState((errors) => ({
-      ...errors,
-      password: "Kata Sandi tidak sama",
-      confirmPassword: "Kata Sandi tidak sama",
-    }));
+    return true;
   }
+  setState((errors) => ({
+    ...errors,
+    password: "Kata Sandi tidak sama",
+    confirmPassword: "Kata Sandi tidak sama",
+  }));
+  return false;
 };
 
 export const emptyValidation = (
-  inputData: InputForm,
-  setState: Dispatch<SetStateAction<InputForm>>
+  inputData: RegisterData | PasswordData,
+  setState:
+    | Dispatch<SetStateAction<RegisterData>>
+    | Dispatch<SetStateAction<PasswordData>>
 ) => {
   for (const key in inputData) {
     if (
       inputData.hasOwnProperty(key) &&
-      inputData[key as keyof InputForm] === ""
+      inputData[key as keyof (RegisterData | PasswordData)] === ""
     ) {
-      setState((errors) => ({
+      setState((errors: any) => ({
         ...errors,
         [key]: `${key} is required`,
       }));
     } else {
-      setState((errors) => ({
+      setState((errors: any) => ({
         ...errors,
         [key]: "",
       }));
@@ -70,4 +75,8 @@ export const usernameLength = (
       username: "Username minimal 5 karakter",
     }));
   }
+};
+
+export const lengthValidation = (data: string, minLength: number) => {
+  return data.length >= minLength;
 };

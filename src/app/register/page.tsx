@@ -9,6 +9,7 @@ import {
   passwordMatch,
   usernameLength,
 } from "@/components/form/formValidation";
+import RegisterForm from "./registerForm";
 // import {
 //   FacebookSVG,
 //   InstagramSVG,
@@ -29,23 +30,23 @@ const defaultInput: InputForm = {
 };
 
 const Register = () => {
-  const [inputError, setInputError] = useState<InputForm>(defaultInput);
-  const [inputData, setInputData] = useState<InputForm>(defaultInput);
+  // const [inputError, setInputError] = useState<InputForm>(defaultInput);
+  // const [inputData, setInputData] = useState<InputForm>(defaultInput);
 
-  const onSubmit = () => {
-    formValidation();
-    emptyValidation(inputData, setInputError);
-  };
+  // const onSubmit = () => {
+  //   formValidation();
+  //   emptyValidation(inputData, setInputError);
+  // };
 
-  const formValidation = () => {
-    emailValidation(inputData.email, setInputError);
-    passwordMatch(inputData.password, inputData.confirmPassword, setInputError);
-    usernameLength(inputData.username, setInputError);
-  };
+  // const formValidation = () => {
+  //   emailValidation(inputData.email, setInputError);
+  //   passwordMatch(inputData.password, inputData.confirmPassword, setInputError);
+  //   usernameLength(inputData.username, setInputError);
+  // };
 
-  const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputData((data) => ({ ...data, [e.target.name]: e.target.value }));
-  };
+  // const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setInputData((data) => ({ ...data, [e.target.name]: e.target.value }));
+  // };
 
   return (
     <section className="min-h-screen flex items-stretch text-white ">
@@ -69,62 +70,7 @@ const Register = () => {
           <h1 className="mt-6 mb-8 font-bold text-lg tracking-wider">
             REGISTER
           </h1>
-          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
-            <div className="pb-2 pt-4">
-              <FormInput
-                id="username"
-                required
-                label="Username"
-                placeholder="johndoe"
-                autoComplete="username"
-                error={inputError.username}
-                onChange={(e) => onChangeValue(e)}
-              />
-            </div>
-            <div className="pb-2 pt-4">
-              <FormInput
-                id="email"
-                required
-                label="Email"
-                type="email"
-                placeholder="johndoe@company.com"
-                autoComplete="email"
-                error={inputError.email}
-                onChange={(e) => onChangeValue(e)}
-              />
-            </div>
-            <div className="pb-2 pt-4">
-              <FormInput
-                id="password"
-                type="password"
-                required
-                label="Password"
-                placeholder="********"
-                error={inputError.password}
-                onChange={(e) => onChangeValue(e)}
-              />
-            </div>
-            <div className="pb-2 pt-4">
-              <FormInput
-                id="confirmPassword"
-                type="password"
-                required
-                label="Confirm Password"
-                placeholder="********"
-                error={inputError.confirmPassword}
-                onChange={(e) => onChangeValue(e)}
-              />
-            </div>
-            <div className="px-4 pb-2 pt-4">
-              <button
-                type="button"
-                onClick={onSubmit}
-                className="text-gray-900 font-bold bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-              >
-                Register New Account
-              </button>
-            </div>
-          </form>
+          <RegisterForm />
         </div>
       </div>
     </section>
