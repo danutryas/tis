@@ -3,12 +3,15 @@ import Link from "next/link";
 import "../../styles/login.scss";
 import FormInput from "@/components/form/input";
 import { useState } from "react";
+<<<<<<< HEAD
 import LoginForm from "./loginForm";
 // import {
 //   FacebookSVG,
 //   InstagramSVG,
 //   TwitterSVG,
 // } from "../../../public/images/icons";
+=======
+>>>>>>> 5647ddfb63c581fe4d1cf87a986128db85696ac9
 
 const Login = () => {
   return (
