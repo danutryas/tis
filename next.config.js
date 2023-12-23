@@ -12,6 +12,9 @@ const nextConfig = {
   ],
   plugins: [require("flowbite/plugin")],
   theme: {},
+  images: {
+    domains: ["apod.nasa.gov"],
+  },
 };
 
 module.exports = nextConfig;
