@@ -5,6 +5,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 const SearchAlbum = () => {
   const [userInput, setUserInput] = useState<string>("");
+  const [datas, setDatas] = useState();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);

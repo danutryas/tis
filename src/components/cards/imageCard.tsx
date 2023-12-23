@@ -1,13 +1,25 @@
+import { DataCard } from "@/app/search/image/page";
 import Image from "next/image";
 import Link from "next/link";
 
-const ImageCard = () => {
+interface ImageCard {
+  data?: DataCard;
+}
+
+const ImageCard = ({ data }: ImageCard) => {
   return (
-    <div className="border border-blue-950 rounded-lg w-96 p-2">
+    <div
+      className="border border-blue-950 rounded-lg w-96 p-2"
+      onClick={() => console.log(data)}
+    >
       <div className="w-full h-80 relative">
         <Link href={`/${""}`}>
           <Image
-            src={"/images/login.jpg"}
+            src={
+              data && data?.links.length > 0
+                ? data?.links[0].href
+                : "/images/login.jpg"
+            }
             layout="fill"
             objectFit="cover"
             alt="card-image"
@@ -16,13 +28,13 @@ const ImageCard = () => {
         </Link>
       </div>
       <div className="p-2 pt-4 flex flex-col gap-2">
-        <p className="text-lg">
-          2016 Summer Series - Mark Kasevich: Quantum Mechanics at Macroscopic
-          Scales
-        </p>
+        <p className="text-lg">{data?.data[0].title}</p>
         <div className="flex gap-2">
-          <AlbumButton name={"Summer Series"} />
-          <AlbumButton name={"Summer Series"} />
+          {data && data?.data[0].album && data?.data[0].album.length > 0
+            ? data?.data[0].album.map((albumName) => (
+                <AlbumButton name={albumName} />
+              ))
+            : null}
         </div>
       </div>
     </div>
@@ -45,31 +57,3 @@ const AlbumButton = ({ name }: AlbumButton) => {
     </Link>
   );
 };
-
-//     "album": [
-//         "Summer Series"
-//     ],
-//     "description": "The underpinning of the universe is quantum mechanics. It can be used to explain the observed particle and wave nature of atoms. Atom interferometry uses the wave characteristics of atoms to investigate fundamental physics and advance our understanding of the macroscopic world. NASA is working with Dr. Mark Kasevich to apply this technology to advance astrophysics and improve navigation. In his seminar, Kasevich will delve into the world of atom interferometry, gravitational waves and quantum sensors.",
-//     "title": "2016 Summer Series - Mark Kasevich: Quantum Mechanics at Macroscopic Scales",
-//     "photographer": "NASA Ames Video Group",
-//     "location": "NASA Ames Research Center",
-//     "nasa_id": "ARC-20160609-AAV2844-SummerSeries-02-MarkKasevich-Youtube",
-//     "media_type": "video",
-//     "keywords": [
-//         "nasa ames",
-//         "nasa in silicon valley",
-//         "ames office of the chief scientist",
-//         "ames ocs",
-//         "2016 summer series",
-//         "quantum mechanics",
-//         "interferometry",
-//         "physics",
-//         "quantum sensors",
-//         "atomic nature",
-//         "atoms",
-//         "fundamental physics",
-//         "astrophysics"
-//     ],
-//     "date_created": "2016-06-09T00:00:00Z",
-//     "description_508": "Lecture by Dr. Mark Kasevich discussing atom interferometry, gravitational wave and quantum sensors",
-//     "center": "ARC"
