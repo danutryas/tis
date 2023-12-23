@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import NavSide from "@/components/aside/navSide";
+import ApodProvider from "@/context/apodContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {/* <Header /> */}
-        {children}
+        <ApodProvider>
+          <div className="">
+            <NavSide />
+            <div className="p-4 sm:ml-72">{children}</div>
+          </div>
+        </ApodProvider>
       </body>
     </html>
   );

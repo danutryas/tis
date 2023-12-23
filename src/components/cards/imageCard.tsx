@@ -37,7 +37,7 @@ interface AlbumButton {
 const AlbumButton = ({ name }: AlbumButton) => {
   return (
     <Link
-      href={`/${name.replace(/ /g, "-")}`}
+      href={`/album/${name.replace(/ /g, "-")}`}
       target="_blank"
       className="border border-black rounded-full w-fit py-1 px-2"
     >

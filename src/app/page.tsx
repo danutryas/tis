@@ -1,124 +1,34 @@
-import ImageCard from "@/components/cards/imageCard";
-import SearchInput from "@/components/form/searchInput";
-import Hero from "@/components/hero";
+"use client";
+import { ApodContext } from "@/context/apodContext";
 import Image from "next/image";
-import Link from "next/link";
+import { useContext } from "react";
 
 export default function Home() {
-  return (
-    <div className="">
-      <aside
-        id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
-        <div className="h-full px-4 pt-8 pb-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 flex flex-col justify-between">
-          <div className="flex flex-col gap-4">
-            <div>
-              <div className="mb-12 ">
-                <Link
-                  href="/"
-                  className="text-white font-extrabold text-4xl text-center"
-                >
-                  TIS
-                </Link>
-              </div>
-              <ul className="space-y-2 font-medium">
-                <li>
-                  <Link
-                    href="/search/image"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                  >
-                    <span className="ms-3">Picture of The Day</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <hr className="border-gray-500 mb-4" />
-            <div>
-              <h1 className="text-gray-900 dark:text-white font-bold text-base pl-2 mb-2">
-                Search
-              </h1>
-              <ul className="space-y-2 font-medium">
-                <li>
-                  <Link
-                    href="/search/image"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                  >
-                    <span className="ms-3">Images</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/search/image"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                  >
-                    <span className="ms-3">Videos</span>
-                  </Link>
-                </li>
-                <Link
-                  href="/search/image"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                >
-                  <span className="ms-3">Albums</span>
-                </Link>
-              </ul>
-            </div>
-            <hr className="border-gray-500" />
-            <div className="">
-              <h1 className="text-gray-900 dark:text-white font-bold text-base pl-2 mb-2">
-                Manage
-              </h1>
-              <ul className="space-y-2 font-medium">
-                <li>
-                  <Link
-                    href="/search/image"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                  >
-                    <span className="ms-3">Likes</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/search/image"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                  >
-                    <span className="ms-3">Favorites</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <hr className="border-gray-500" />
-          </div>
+  const { apod } = useContext(ApodContext);
 
-          <div className="flex-col flex gap-4">
-            <div className="bg-white w-full h-auto flex p-4 rounded-lg gap-5 flex-col items-center">
-              <div className="h-16 w-16 rounded-full bg-black"></div>
-              <div className="flex justify-center flex-col items-center">
-                <p className="font-semibold">Danu Tryas Pristowo</p>
-                <p className="text-sm">danupristowo09@gmail.com</p>
-              </div>
-            </div>
-            <Link
-              href="/search/image"
-              className="flex items-center px-2 py-4 hover:text-red-500 rounded-lg hover:bg-gray-700  bg-red-200 text-gray-700 font-bold  group text-sm"
-            >
-              <span className="ms-3">Logout</span>
-            </Link>
+  return (
+    <>
+      <div className="w-full mx-auto flex flex-col items-center gap-6">
+        <h1 className="font-semibold text-2xl">Astronomy Picture of The Day</h1>
+        <div className="flex w-full gap-4 mx-auto justify-center">
+          <div className="w-2/5 p-2 relative aspect-square basis-1/2 max-w-screen-md">
+            <Image
+              src={apod && apod.url ? apod.url : ""}
+              alt="picture-of-the-day"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
+            />
           </div>
-        </div>
-      </aside>
-      <div className="p-4 sm:ml-72">
-        <SearchInput placeholder="Search Image... " />
-        <div className="w-full mt-20 flex gap-6">
-          <ImageCard />
-          <ImageCard />
-          <ImageCard />
+          <div className="basis-1/2 max-w-screen-sm">
+            <p>{apod && apod.date ? apod.date : ""}</p>
+            <h2 className="font-semibold text-2xl">
+              {apod && apod.title ? apod.title : ""}
+            </h2>
+            <p>{apod && apod.explanation ? apod.explanation : ""}</p>
+          </div>
         </div>
       </div>
-    </div>
-    // <>
-    //   <Hero />
-    // </>
+    </>
   );
 }

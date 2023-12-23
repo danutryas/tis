@@ -2,7 +2,7 @@ import { serialize } from "cookie";
 import { sign } from "jsonwebtoken";
 import Axios from "../../axios";
 
-const MAX_AGE = 60;
+const MAX_AGE = 60 * 60 * 24;
 
 export async function POST(request: Request) {
   const body = await request.json();
