@@ -1,6 +1,7 @@
 import { DataCard } from "@/app/search/image/page";
 import Image from "next/image";
 import Link from "next/link";
+import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 
 interface ImageCard {
   data?: DataCard;
@@ -9,7 +10,7 @@ interface ImageCard {
 const ImageCard = ({ data }: ImageCard) => {
   return (
     <div
-      className="border border-blue-950 rounded-lg w-96 p-2"
+      className="border border-blue-950 rounded-lg w-96 p-2 justify-self-center"
       onClick={() => console.log(data)}
     >
       <div className="w-full h-80 relative">
@@ -27,14 +28,21 @@ const ImageCard = ({ data }: ImageCard) => {
           />
         </Link>
       </div>
-      <div className="p-2 pt-4 flex flex-col gap-2">
-        <p className="text-lg">{data?.data[0].title}</p>
-        <div className="flex gap-2">
-          {data && data?.data[0].album && data?.data[0].album.length > 0
-            ? data?.data[0].album.map((albumName) => (
-                <AlbumButton name={albumName} />
-              ))
-            : null}
+      <div className="p-2 pt-4 flex gap-2 justify-between">
+        <div className="flex flex-col gap-2">
+          <p className="text-lg">{data?.data[0].title}</p>
+          <div className="flex gap-2">
+            {data && data?.data[0].album && data?.data[0].album.length > 0
+              ? data?.data[0].album.map((albumName) => (
+                  <AlbumButton name={albumName} />
+                ))
+              : null}
+          </div>
+        </div>
+        <div className="w-4 justify-self-end">
+          <button>
+            <MoreVertOutlinedIcon />
+          </button>
         </div>
       </div>
     </div>

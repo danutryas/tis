@@ -11,6 +11,13 @@ export default function Home() {
       <div className="w-full mx-auto flex flex-col items-center gap-6">
         <h1 className="font-semibold text-2xl">Astronomy Picture of The Day</h1>
         <div className="flex w-full gap-4 mx-auto justify-center">
+          <div className="basis-1/2 max-w-screen-sm">
+            <p>{apod && apod.date ? apod.date : ""}</p>
+            <h2 className="font-semibold text-2xl">
+              {apod && apod.title ? apod.title : ""}
+            </h2>
+            <p>{apod && apod.explanation ? apod.explanation : ""}</p>
+          </div>
           <div className="w-2/5 p-2 relative aspect-square basis-1/2 max-w-screen-md">
             <Image
               src={apod && apod.url ? apod.url : ""}
@@ -19,13 +26,6 @@ export default function Home() {
               objectFit="cover"
               className="rounded-lg"
             />
-          </div>
-          <div className="basis-1/2 max-w-screen-sm">
-            <p>{apod && apod.date ? apod.date : ""}</p>
-            <h2 className="font-semibold text-2xl">
-              {apod && apod.title ? apod.title : ""}
-            </h2>
-            <p>{apod && apod.explanation ? apod.explanation : ""}</p>
           </div>
         </div>
       </div>
