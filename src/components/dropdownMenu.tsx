@@ -10,7 +10,7 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 
 const DropdownMenuEl = () => {
   return (
-    <DropdownMenu className="outline-none ring-0">
+    <DropdownMenu>
       <DropdownMenuTrigger>
         <MoreVertOutlinedIcon />
       </DropdownMenuTrigger>

@@ -2,7 +2,7 @@ import { DataCard } from "@/app/search/image/page";
 import Image from "next/image";
 import Link from "next/link";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import DropdownMenuEl from "./dropdownMenu";
+import DropdownMenuEl from "../dropdownMenu";
 
 interface ImageCard {
   data?: DataCard;
@@ -15,21 +15,22 @@ const ImageCard = ({ data }: ImageCard) => {
       onClick={() => console.log(data)}
     >
       <div className="w-full h-80 relative">
-        {/* <Link href={`/${""}`} className="relative"> */}
-        <Image
-          src={
-            data && data?.links.length > 0
-              ? data?.links[0].href
-              : "/images/login.jpg"
-          }
-          fill
-          alt="card-image"
-          className="rounded-lg object-cover w-full"
-          // loader={}
-          sizes="100vw"
-          priority
-        />
-        {/* </Link> */}
+        <Link href={`/${""}`}>
+          <Image
+            src={
+              data && data?.links.length > 0
+                ? data?.links[0].href
+                : "/images/login.jpg"
+            }
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            alt="card-image"
+            className="rounded-lg"
+            width="0"
+            height="0"
+            sizes="100vw"
+            priority
+          />
+        </Link>
       </div>
       <div className="p-2 pt-4 flex gap-2 justify-between">
         <div className="flex flex-col gap-2">
