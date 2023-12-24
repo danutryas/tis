@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/header/header";
 import NavSide from "@/components/aside/navSide";
 import ApodProvider from "@/context/apodContext";
+import TanstackProvider from "@/context/tanstackContext";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +23,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ApodProvider>
-          <div className="">
-            <NavSide />
-            <div className="p-4 sm:ml-72">{children}</div>
-          </div>
-        </ApodProvider>
+        {/* <Header /> */}
+        <TanstackProvider>
+          <ApodProvider>
+            <div className="">
+              <NavSide />
+              <div className="p-4 sm:ml-72">
+                {children}
+                <Toaster />
+              </div>
+            </div>
+          </ApodProvider>
+        </TanstackProvider>
       </body>
     </html>
   );

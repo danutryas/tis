@@ -28,10 +28,9 @@ const LoginForm = () => {
     try {
       const response = await axios.post("/api/auth/login", loginData);
       localStorage.setItem("username", response.data.username);
-      router.push("/profile");
+      router.push("/");
     } catch (e: any) {
       console.log(e);
-      //   setError(e)
     }
   };
 

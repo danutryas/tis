@@ -1,8 +1,16 @@
 "use client";
-import ImageCard from "../../../components/cards/imageCard";
-import SearchInput from "../../../components/form/searchInput";
+import SearchInput from "@/components/form/searchInput";
+import { ApodContext } from "@/context/apodContext";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import axios from "axios";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import ImageCard from "@/components/cards/imageCard";
 
 export interface Data {
   description: "";
@@ -55,14 +63,25 @@ export const defaultValueDataCard: DataCard = {
 const SearchImage = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [datas, setDatas] = useState<DataCard[]>([defaultValueDataCard]);
+  const { apod } = useContext(ApodContext);
+
+  const { isLoading, isError } = useQuery({
+    queryKey: ["nasa-images"],
+    queryFn: async () => {
+      const response = await axios.get("https://images-api.nasa.gov/search", {
+        params: {
+          q: apod.title,
+          media_type: "image",
+        },
+      });
+      // console.log(response);
+      setDatas(response.data.collection.items);
+    },
+  });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
-
-  useEffect(() => {
-    console.log(datas);
-  }, [datas]);
 
   const onSubmit = async () => {
     try {
@@ -86,9 +105,13 @@ const SearchImage = () => {
         onSubmit={onSubmit}
       />
       <div className="w-full mt-20 grid gap-6 grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 justify-items-start">
-        {datas[0] !== defaultValueDataCard
-          ? datas.map((data) => <ImageCard data={data} />)
-          : null}
+        {!isLoading ? (
+          datas && datas[0] !== defaultValueDataCard ? (
+            datas.map((data, index) => <ImageCard data={data} key={index} />)
+          ) : null
+        ) : (
+          <div className="text-center col-start-2 w-full">Loading...</div>
+        )}
       </div>
     </div>
   );

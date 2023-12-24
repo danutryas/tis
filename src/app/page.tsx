@@ -2,9 +2,14 @@
 import { ApodContext } from "@/context/apodContext";
 import Image from "next/image";
 import { useContext } from "react";
+import dayjs from "dayjs";
 
 export default function Home() {
   const { apod } = useContext(ApodContext);
+
+  const getTime = (date: string) => {
+    return dayjs(date).format("dddd, D MMMM YYYY");
+  };
 
   return (
     <>
@@ -12,11 +17,12 @@ export default function Home() {
         <h1 className="font-semibold text-2xl">Astronomy Picture of The Day</h1>
         <div className="flex w-full gap-4 mx-auto justify-center">
           <div className="basis-1/2 max-w-screen-sm">
-            <p>{apod && apod.date ? apod.date : ""}</p>
-            <h2 className="font-semibold text-2xl">
+            <h2 className="font-semibold text-2xl text-center">
               {apod && apod.title ? apod.title : ""}
             </h2>
-            <p>{apod && apod.explanation ? apod.explanation : ""}</p>
+            <p className="text-justify pt-4">
+              {apod && apod.explanation ? apod.explanation : ""}
+            </p>
           </div>
           <div className="w-2/5 p-2 relative aspect-square basis-1/2 max-w-screen-md">
             <Image
