@@ -1,0 +1,9 @@
+{
+  "presets": ["next/babel"],
+  "overrides": [
+    {
+      "test": "/.font.js$/", // Adjust the pattern as needed
+      "plugins": []
+    }
+  ]
+}

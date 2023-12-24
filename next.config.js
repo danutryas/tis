@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
+// const withSWC = require("@next/swc");
 
 const nextConfig = {
   sassOptions: {
@@ -14,6 +15,9 @@ const nextConfig = {
   theme: {},
   images: {
     domains: ["apod.nasa.gov", "images-assets.nasa.gov"],
+  },
+  experimental: {
+    forceSwcTransforms: true,
   },
 };
 
