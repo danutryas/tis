@@ -1,6 +1,6 @@
 "use client";
-import ImageCard from "@/components/cards/imageCard";
-import SearchInput from "@/components/form/searchInput";
+import ImageCard from "../../../components/cards/imageCard";
+import SearchInput from "../../../components/form/searchInput";
 import { ChangeEvent, useEffect, useState } from "react";
 
 const SearchAlbum = () => {
@@ -22,9 +22,9 @@ const SearchAlbum = () => {
         onChange={(e) => onChange(e)}
       />
       <div className="w-full mt-20 flex gap-6">
+        {/* <ImageCard />
         <ImageCard />
-        <ImageCard />
-        <ImageCard />
+        <ImageCard /> */}
       </div>
     </div>
   );

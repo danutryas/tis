@@ -1,14 +1,6 @@
 "use client";
-import Link from "next/link";
-import "../../styles/login.scss";
-import FormInput from "@/components/form/input";
-import { useState } from "react";
+
 import LoginForm from "./loginForm";
-// import {
-//   FacebookSVG,
-//   InstagramSVG,
-//   TwitterSVG,
-// } from "../../../public/images/icons";
 
 const Login = () => {
   return (

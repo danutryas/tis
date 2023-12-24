@@ -21,10 +21,13 @@ const ImageCard = ({ data }: ImageCard) => {
                 ? data?.links[0].href
                 : "/images/login.jpg"
             }
-            layout="fill"
-            objectFit="cover"
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
             alt="card-image"
             className="rounded-lg"
+            width="0"
+            height="0"
+            sizes="100vw"
+            priority
           />
         </Link>
       </div>

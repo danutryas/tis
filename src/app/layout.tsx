@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
+import Header from "@/components/header/header";
 import NavSide from "@/components/aside/navSide";
 import ApodProvider from "@/context/apodContext";
 
@@ -21,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <Header /> */}
         <ApodProvider>
           <div className="">
             <NavSide />

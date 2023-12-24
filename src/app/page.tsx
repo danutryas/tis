@@ -20,11 +20,14 @@ export default function Home() {
           </div>
           <div className="w-2/5 p-2 relative aspect-square basis-1/2 max-w-screen-md">
             <Image
-              src={apod && apod.url ? apod.url : ""}
+              src={apod && apod.url ? apod.url : "/images/login.jpg"}
               alt="picture-of-the-day"
-              layout="fill"
-              objectFit="cover"
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
               className="rounded-lg"
+              width="0"
+              height="0"
+              sizes="100vw"
+              priority
             />
           </div>
         </div>

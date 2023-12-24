@@ -1,6 +1,6 @@
 "use client";
-import ImageCard from "@/components/cards/imageCard";
-import SearchInput from "@/components/form/searchInput";
+import ImageCard from "../../../components/cards/imageCard";
+import SearchInput from "../../../components/form/searchInput";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 

@@ -1,4 +1,4 @@
-import FormInput from "@/components/form/input";
+import FormInput from "../../components/form/formInput";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
