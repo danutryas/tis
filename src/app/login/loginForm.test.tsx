@@ -5,15 +5,6 @@ import { describe } from "node:test";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 
-// const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
-// const [data, setData] = useState({
-//   username: "admin",
-//   password: "password1234",
-// });
-
-// jest.spyOn(React, "useState").mockImplementationOnce(() => setData(data));
-
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: jest.fn(),
