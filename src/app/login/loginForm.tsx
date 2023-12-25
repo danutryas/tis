@@ -16,7 +16,7 @@ const defaultValueLoginData: LoginData = {
 };
 
 const LoginForm = () => {
-  const [error, setError] = useState<string>("ass");
+  const [error, setError] = useState<string>("");
   const [loginData, setLoginData] = useState<LoginData>(defaultValueLoginData);
   const router = useRouter();
 
