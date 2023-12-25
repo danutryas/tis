@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -7,34 +9,35 @@ import ApodProvider from "@/context/apodContext";
 import TanstackProvider from "@/context/tanstackContext";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+import { SessionProvider } from "next-auth/react";
+import { AppProps } from "next/app";
 
-export const metadata: Metadata = {
-  title: "TIS : The Incredible Space",
-  description:
-    "We will provide you the amazing information about space that you should know",
-};
+// const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// export const metadata: Metadata = {
+//   title: "TIS : The Incredible Space",
+//   description:
+//     "We will provide you the amazing information about space that you should know",
+// };
+
+export default function RootLayout({ children, pageProps }: AppProps) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         {/* <Header /> */}
-        <TanstackProvider>
-          <ApodProvider>
-            <div className="">
-              <NavSide />
-              <div className="p-4 sm:ml-72">
-                {children}
-                <Toaster />
+        <SessionProvider>
+          <TanstackProvider>
+            <ApodProvider>
+              <div className="">
+                <NavSide />
+                <div className="p-4 sm:ml-72">
+                  {children}
+                  <Toaster />
+                </div>
               </div>
-            </div>
-          </ApodProvider>
-        </TanstackProvider>
+            </ApodProvider>
+          </TanstackProvider>
+        </SessionProvider>
       </body>
     </html>
   );

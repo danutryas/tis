@@ -3,9 +3,12 @@ import { ApodContext } from "@/context/apodContext";
 import Image from "next/image";
 import { useContext } from "react";
 import dayjs from "dayjs";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { apod } = useContext(ApodContext);
+  const session = useSession();
+  console.log(session);
 
   const getTime = (date: string) => {
     return dayjs(date).format("dddd, D MMMM YYYY");

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 const NavSide = () => {
   return (
@@ -102,12 +103,12 @@ const NavSide = () => {
               <p className="text-sm">danupristowo09@gmail.com</p>
             </div>
           </div>
-          <Link
-            href="/search/image"
+          <button
             className="flex items-center px-2 py-4 hover:text-red-500 rounded-lg hover:bg-gray-700  bg-red-200 text-gray-700 font-bold  group text-sm"
+            onClick={() => signOut()}
           >
             <span className="ms-3">Logout</span>
-          </Link>
+          </button>
         </div>
       </div>
     </aside>

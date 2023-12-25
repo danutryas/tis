@@ -2,7 +2,8 @@ import FormInput from "@/components/form/input";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEventHandler, SyntheticEvent, useState } from "react";
+import { signIn } from "next-auth/react";
 
 interface LoginData {
   username: string;
@@ -24,11 +25,15 @@ const LoginForm = () => {
     setError("");
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", loginData);
-      localStorage.setItem("username", response.data.username);
-      router.push("/");
+      const response = await signIn("credentials", {
+        username: loginData.username,
+        password: loginData.password,
+        redirect: false,
+      });
+      console.log(response);
     } catch (e: any) {
       console.log(e);
     }
@@ -65,7 +70,7 @@ const LoginForm = () => {
           <button
             type="button"
             className="text-gray-900 font-bold  bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            onClick={onSubmit}
+            onClick={(e: SyntheticEvent) => onSubmit(e)}
           >
             Sign in
           </button>
