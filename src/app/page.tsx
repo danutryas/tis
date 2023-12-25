@@ -27,17 +27,17 @@ export default function Home() {
               {apod && apod.explanation ? apod.explanation : ""}
             </p>
           </div>
-          <div className="basis-1/2 flex gap-2 flex-col max-w-screen-md w-2/5 p-2">
-            <div className="relative aspect-square">
-              <Image
-                src={apod && apod.url ? apod.url : "/images/login.jpg"}
-                alt="picture-of-the-day"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
-            <p>{apod && apod.date ? getTime(apod.date) : ""}</p>
+          <div className="w-2/5 p-2 relative aspect-square basis-1/2 max-w-screen-md">
+            <Image
+              src={apod && apod.url ? apod.url : "/images/login.jpg"}
+              alt="picture-of-the-day"
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              className="rounded-lg"
+              width="0"
+              height="0"
+              sizes="100vw"
+              priority
+            />
           </div>
         </div>
       </div>

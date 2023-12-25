@@ -1,5 +1,4 @@
 "use client";
-import ImageCard from "@/components/imageCard";
 import SearchInput from "@/components/form/searchInput";
 import { ApodContext } from "@/context/apodContext";
 import {
@@ -11,6 +10,7 @@ import {
 import axios from "axios";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import ImageCard from "@/components/cards/imageCard";
 
 export interface Data {
   description: "";

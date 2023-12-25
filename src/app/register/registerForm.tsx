@@ -2,8 +2,8 @@ import {
   emptyValidation,
   lengthValidation,
   passwordMatch,
-} from "@/components/form/formValidation";
-import FormInput from "@/components/form/input";
+} from "../../components/form/formValidation";
+import FormInput from "../../components/form/formInput";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import Axios from "../api/axios";
