@@ -36,7 +36,7 @@ const Hero = () => {
               </p>
               <div className="flex flex-col md:flex-row items-center gap-4 justify-center">
                 <Link
-                  href="/"
+                  href="/register"
                   className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition duration-300 ease-in-out font-bold text-sm"
                 >
                   Get Started

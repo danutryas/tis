@@ -6,14 +6,19 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { DataCard, defaultValueDataCard } from "../image/page";
 import { ApodContext } from "@/context/apodContext";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 const ALBUMS = ["Summer Series", "Apollo"];
 
 const SearchAlbum = () => {
+  const searchParams = useSearchParams();
+
   const [userInput, setUserInput] = useState<string>("");
   const [datas, setDatas] = useState<DataCard[]>([defaultValueDataCard]);
   //   const { apod } = useContext(ApodContext);
+  const search = searchParams?.get("q");
 
+  console.log(search);
   //   console.log(apod);
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -51,11 +56,12 @@ const SearchAlbum = () => {
     queryFn: async () => {
       const response = await axios.get("https://images-api.nasa.gov/search", {
         params: {
-          q: ALBUMS[0],
+          q: search ? search.replace("-", " ") : ALBUMS[0],
           media_type: "video",
         },
       });
       setDatas(response.data.collection.items);
+      return "";
     },
   });
 
@@ -65,6 +71,7 @@ const SearchAlbum = () => {
         placeholder="Search by Albums... "
         onChange={(e) => onChange(e)}
         onSubmit={onSearch}
+        value={search ? search.replace("-", " ") : ""}
       />
       <div className="w-full mt-20 flex gap-6 flex-col">
         <div className="flex gap-4">

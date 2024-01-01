@@ -65,7 +65,7 @@ const SearchImage = () => {
   const [datas, setDatas] = useState<DataCard[]>([defaultValueDataCard]);
   const { apod } = useContext(ApodContext);
 
-  const { isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["nasa-images"],
     queryFn: async () => {
       const response = await axios.get("https://images-api.nasa.gov/search", {
@@ -74,8 +74,8 @@ const SearchImage = () => {
           media_type: "image",
         },
       });
-      // console.log(response);
       setDatas(response.data.collection.items);
+      return response.data.collection.items;
     },
   });
 

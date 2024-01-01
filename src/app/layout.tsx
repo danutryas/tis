@@ -1,16 +1,12 @@
 "use client";
 
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header/header";
-import NavSide from "@/components/aside/navSide";
 import ApodProvider from "@/context/apodContext";
 import TanstackProvider from "@/context/tanstackContext";
-import { Toaster } from "@/components/ui/toaster";
 
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
+import LayoutWrapper from "./layoutWrapper";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -29,11 +25,7 @@ export default function RootLayout({ children, pageProps }: AppProps) {
           <TanstackProvider>
             <ApodProvider>
               <div className="">
-                <NavSide />
-                <div className="p-4 sm:ml-72">
-                  {children}
-                  <Toaster />
-                </div>
+                <LayoutWrapper>{children}</LayoutWrapper>
               </div>
             </ApodProvider>
           </TanstackProvider>

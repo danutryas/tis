@@ -8,15 +8,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 
-const DropdownMenuEl = () => {
+interface DropdownMenuEl {
+  onSubmit: () => void;
+}
+
+const DropdownMenuEl = (props: DropdownMenuEl) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <MoreVertOutlinedIcon />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>Like</DropdownMenuItem>
-        <DropdownMenuItem>Favorites</DropdownMenuItem>
+        <DropdownMenuItem onClick={props.onSubmit}>Like</DropdownMenuItem>
+        {/* <DropdownMenuItem>Favorites</DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

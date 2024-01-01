@@ -33,6 +33,7 @@ const LoginForm = () => {
         password: loginData.password,
         redirect: false,
       });
+      router.push("/");
       console.log(response);
     } catch (e: any) {
       console.log(e);

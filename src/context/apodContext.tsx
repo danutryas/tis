@@ -13,7 +13,7 @@ export const ApodContext = createContext<ApodContextType>(
 );
 
 const ApodProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [apod, setApod] = useState<Apod>(defaultApodValue); // Astronomy Picture of the Day
+  const [apod, setApod] = useState<Apod>(defaultApodValue);
 
   const getApod = async () => {
     try {

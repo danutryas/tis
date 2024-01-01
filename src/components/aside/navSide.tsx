@@ -1,7 +1,10 @@
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const NavSide = () => {
+  const session = useSession();
+  const router = useRouter();
   return (
     <aside
       id="default-sidebar"
@@ -74,14 +77,7 @@ const NavSide = () => {
                   <span className="ms-3">Likes</span>
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/profile/favorites"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
-                >
-                  <span className="ms-3">Favorites</span>
-                </Link>
-              </li>
+
               <li>
                 <Link
                   href="/profile/favorites"
@@ -99,13 +95,16 @@ const NavSide = () => {
           <div className="bg-white w-full h-auto flex p-4 rounded-lg gap-5 flex-col items-center">
             <div className="h-16 w-16 rounded-full bg-black"></div>
             <div className="flex justify-center flex-col items-center">
-              <p className="font-semibold">Danu Tryas Pristowo</p>
-              <p className="text-sm">danupristowo09@gmail.com</p>
+              <p className="font-semibold">{session.data?.user.username}</p>
+              <p className="text-sm">{session.data?.user.email}</p>
             </div>
           </div>
           <button
             className="flex items-center px-2 py-4 hover:text-red-500 rounded-lg hover:bg-gray-700  bg-red-200 text-gray-700 font-bold  group text-sm"
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut();
+              router.push("/login");
+            }}
           >
             <span className="ms-3">Logout</span>
           </button>

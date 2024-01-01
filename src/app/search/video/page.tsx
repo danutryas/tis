@@ -42,6 +42,7 @@ const SearchVideo = () => {
         },
       });
       setDatas(response.data.collection.items);
+      return response.data.collection.items;
     },
   });
 

@@ -194,7 +194,7 @@ describe("RegisterForm", () => {
 
     // Type in valid credentials
     fireEvent.change(nameInput, { target: { value: "user 01" } });
-    fireEvent.change(usernameInput, { target: { value: "user1" } });
+    fireEvent.change(usernameInput, { target: { value: "user" } });
     fireEvent.change(emailInput, {
       target: { value: "user@gmail.com" },
     });
@@ -212,7 +212,7 @@ describe("RegisterForm", () => {
         "http://localhost:8000/api/auth/signup",
         {
           name: "user 01",
-          username: "user1",
+          username: "user",
           email: "user@gmail.com",
           password: "password1234",
         }

@@ -14,8 +14,11 @@ declare module "next-auth" {
  * or the second parameter of the `session` callback, when using a database.
  */
 interface User {
+  id: string;
   username: string;
-  password: string;
+  email: string;
+  token: string;
+  phoneNumber: string;
 }
 /**
  * Usually contains information about the provider being used
