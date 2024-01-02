@@ -9,7 +9,7 @@ const Hero = () => {
       ></div>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black opacity-80"></div>
+      <div className="absolute inset-0 bg-black opacity-60"></div>
 
       {/* Hero Banner Content */}
       <div className="container mx-auto absolute inset-0 px-6 flex items-center justify-center text-center text-white flex-row mt-6">
@@ -40,12 +40,6 @@ const Hero = () => {
                   className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition duration-300 ease-in-out font-bold text-sm"
                 >
                   Get Started
-                </Link>
-                <Link
-                  href="/learn-more"
-                  className="text-white font-bold text-sm mt-2 md:mt-0"
-                >
-                  Learn More <span>&#10132;</span>
                 </Link>
               </div>
             </div>

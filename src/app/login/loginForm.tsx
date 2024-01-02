@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEventHandler, SyntheticEvent, useState } from "react";
 import { signIn } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface LoginData {
   username: string;
@@ -16,6 +17,7 @@ const defaultValueLoginData: LoginData = {
 };
 
 const LoginForm = () => {
+  const { toast } = useToast();
   const [error, setError] = useState<string>("");
   const [loginData, setLoginData] = useState<LoginData>(defaultValueLoginData);
   const router = useRouter();
@@ -33,7 +35,14 @@ const LoginForm = () => {
         password: loginData.password,
         redirect: false,
       });
-      router.push("/");
+      if (response?.status === 401) {
+        toast({
+          description: response.error,
+          variant: "destructive",
+        });
+      } else if (response?.status === 201) {
+        router.push("/");
+      }
       console.log(response);
     } catch (e: any) {
       console.log(e);
