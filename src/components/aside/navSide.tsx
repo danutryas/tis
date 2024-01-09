@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import { useContext } from "react";
+import { ApodContext } from "@/context/apodContext";
 
 const NavSide = () => {
   const session = useSession();
   const router = useRouter();
+  const { apod } = useContext(ApodContext);
+  const location = usePathname();
+  console.log(location);
   return (
     <aside
       id="default-sidebar"
@@ -28,7 +34,7 @@ const NavSide = () => {
                   href="/"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
                 >
-                  <span className="ms-3">Picture of The Day</span>
+                  <span className="ms-3">Insight of The Day</span>
                 </Link>
               </li>
             </ul>
@@ -78,27 +84,53 @@ const NavSide = () => {
                 </Link>
               </li>
 
-              <li>
+              {/* <li>
                 <Link
                   href="/profile/favorites"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group text-sm"
                 >
                   <span className="ms-3">Settings</span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <hr className="border-gray-500" />
         </div>
 
         <div className="flex-col flex gap-4">
-          <div className="bg-white w-full h-auto flex p-4 rounded-lg gap-5 flex-col items-center">
-            <div className="h-16 w-16 rounded-full bg-black"></div>
+          {location !== "/" ? (
+            <div className="bg-white w-full h-auto flex pt-2 pb-3 px-1 rounded-lg gap-1 flex-col items-center">
+              <>
+                <div className="w-full p-2 relative aspect-square">
+                  <Image
+                    src={apod && apod.url ? apod.url : "/images/login.jpg"}
+                    alt="picture-of-the-day"
+                    style={{
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    className="rounded-lg"
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    priority
+                  />
+                </div>
+                <Link href={"/"} className="hover:underline">
+                  <h3 className="font-semibold">
+                    {apod && apod.url ? apod.title : ""}
+                  </h3>
+                </Link>
+              </>
+            </div>
+          ) : null}
+          {/* <div className="h-16 w-16 rounded-full bg-black"></div>
             <div className="flex justify-center flex-col items-center">
               <p className="font-semibold">{session.data?.user.username}</p>
               <p className="text-sm">{session.data?.user.email}</p>
-            </div>
-          </div>
+            </div> */}
+
           <button
             className="flex items-center px-2 py-4 hover:text-red-500 rounded-lg hover:bg-gray-700  bg-red-200 text-gray-700 font-bold  group text-sm"
             onClick={() => {

@@ -40,7 +40,7 @@ const LoginForm = () => {
           description: response.error,
           variant: "destructive",
         });
-      } else if (response?.status === 201) {
+      } else if (response?.status === 200) {
         router.push("/");
       }
       console.log(response);

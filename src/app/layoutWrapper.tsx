@@ -18,7 +18,12 @@ const LayoutWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       </>
     );
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  );
 };
 
 export default LayoutWrapper;

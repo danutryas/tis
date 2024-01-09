@@ -12,14 +12,19 @@ export default function Home() {
   console.log(session);
 
   const getTime = (date: string) => {
-    return dayjs(date).format("dddd, D MMMM YYYY");
+    return dayjs(date).format("dddd, MMMM D, YYYY");
   };
 
   if (session.data)
     return (
       <>
         <div className="w-full mx-auto flex flex-col items-center gap-6">
-          <h1 className="font-semibold text-2xl">Insight of The Day</h1>
+          <div className="flex flex-col gap-1 justify-center text-center">
+            <h1 className="font-semibold text-2xl">Insight of The Day</h1>
+            <p className="text-sm ">
+              {getTime(apod && apod.date ? apod.date : new Date().toString())}
+            </p>
+          </div>
           <div className="flex w-full gap-4 mx-auto justify-center">
             <div className="basis-1/2 max-w-screen-sm">
               <h2 className="font-semibold text-4xl text-center">
