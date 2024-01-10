@@ -19,7 +19,7 @@ const DropdownMenuEl = (props: DropdownMenuEl) => {
         <MoreVertOutlinedIcon />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem onClick={props.onSubmit}>Like</DropdownMenuItem>
+        <DropdownMenuItem onClick={props.onSubmit}>Save</DropdownMenuItem>
         {/* <DropdownMenuItem>Favorites</DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
